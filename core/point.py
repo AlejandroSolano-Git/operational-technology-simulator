@@ -34,7 +34,7 @@ class Limits:
     hi: Optional[float] = None
 
 @dataclass
-class Point(Generic(T)):
+class Point(Generic[T]):
     id: str
     value: T
     ts_mono: float  #Monotonic timestamp in secs
