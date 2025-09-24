@@ -34,7 +34,7 @@ class Ack:
     reason: Optional[str] = None
 
 #Small, reusable validator for setpoints. 
-def validate_setpoints(value: Optional[float], lo: float, hi: float) -> Ack:
+def validate_setpoint(value: Optional[float], lo: float, hi: float) -> Ack:
     if value is None:
         return Ack(False, AckCode.INVALID, "SETPOINT requires a value")
     if not (lo <= value <= hi):
