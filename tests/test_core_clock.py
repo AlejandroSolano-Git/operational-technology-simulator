@@ -1,8 +1,8 @@
 # tests/test_core_clock.py
-from core.clock import TestingClock, RealTimeClock
+from core.clock import SimClock, RealTimeClock
 
 def test_testingclock_ticks():
-    clk = TestingClock(period_s=0.5)
+    clk = SimClock(period_s=0.5)
     t0 = clk.now()
     clk.sleep_until_next_scan()
     assert clk.now() == t0 + 0.5
@@ -11,7 +11,7 @@ def test_testingclock_ticks():
 
 def test_realtimeclock_overrun_calls_callback(monkeypatch):
     events = []
-    def on_overrun(behind, now): events.appemd(round(behind, 3))
+    def on_overrun(behind, now): events.append(round(behind, 3))
 
     clk = RealTimeClock(period_s=0.1, on_overrun=on_overrun)
 

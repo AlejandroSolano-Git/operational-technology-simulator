@@ -1,6 +1,6 @@
 # tests/test_core_point.py
-from core.point import AnalogPoint, Quality, CovRule
-
+from core.point import Quality, CovRule
+from core.point_types import AnalogPoint
 def test_cov_deadband_abs():
     pt = AnalogPoint(id="A1.PT101", value=10.0, ts_mono=0.0, quality=Quality.GOOD, cov=CovRule(deadband_abs=0.2))
     prev = AnalogPoint(**pt.__dict__)

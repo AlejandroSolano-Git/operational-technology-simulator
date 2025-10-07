@@ -57,7 +57,7 @@ class RealTimeClock(ScanClock):
             self._next_deadline += missed_ticks * self.period_s
         #Here we don't want to sleep at all. We need to run immediately and re-check on the next call.
 
-class TestingClock(ScanClock):
+class SimClock(ScanClock):
     """
     Stopwatch style clock for testing and replay.
     - Time is controlled; nothing actually sleeps.
