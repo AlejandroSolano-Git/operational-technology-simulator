@@ -19,9 +19,10 @@ def dwell_ok(is_true_now: bool, last_true_since: Optional[float], now_mono: floa
     """
     if not is_true_now:
         return False, None
-    start = last_true_since or now_mono
-    ok = (now_mono - start) * 1000.0 >= dwell_ms
-    return ok, start
+    if last_true_since is None:
+        last_true_since = now_mono
+    ok = (now_mono - last_true_since) * 1000.0 >= dwell_ms
+    return ok, last_true_since
 
 #Hysteresis for thresholds: Avoid chattering around a boundary
 def hysteresis_ok(current_ok: bool, measured: float, min_on: float, h_up: float, h_down: float) -> bool:
